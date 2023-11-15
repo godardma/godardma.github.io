@@ -7192,7 +7192,7 @@ button.bg-warning:focus {
 }
 
 .bg-danger {
-  background-color: #F85C70 !important;
+  background-color: #6F5CF8 !important;
 }
 
 a.bg-danger:hover, a.bg-danger:focus,
@@ -10809,19 +10809,19 @@ a.text-info:hover, a.text-info:focus {
 }
 
 .text-warning {
-  color: #FF8882 !important;
+  color: #688ACF !important;
 }
 
 a.text-warning:hover, a.text-warning:focus {
-  color: #ff3f36 !important;
+  color: #003DCC !important;
 }
 
 .text-danger {
-  color: #F85C70 !important;
+  color: #688ACF !important;
 }
 
 a.text-danger:hover, a.text-danger:focus {
-  color: #f51330 !important;
+  color: #003DCC !important;
 }
 
 .text-light {
@@ -11596,7 +11596,7 @@ pre .code {
           justify-content: center;
   text-align: center;
   padding: 1rem;
-  background: #fcbec6;
+  background: #bed6fc;
 }
 
 .section {
