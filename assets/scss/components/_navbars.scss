@@ -18,6 +18,40 @@
         color: $red !important;
     }
 
+    .secondary {
+        text-align: center;
+
+        .secondary-img {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+            -weblit-transform: translate(-50%,-50%);
+            border: 10px solid white;
+            transition: .5s !important;
+            -weblit-transition: .5s !important;
+            z-index: 2;
+            box-shadow: 0 5px 1px rgba(128, 128, 128, 0.13);
+            width: 170px;
+            border-radius: 50%;
+        }
+
+        .secondary-txt {
+            position: relative;
+            bottom: -20px;
+            opacity: 0;
+            transition: 1s;
+            -weblit-transition: 1s;
+            z-index: 1;
+
+            .secondary-subtitle{
+                font-size: 13px;
+                color: #888;
+            }
+        }
+
+    }
+
     .brand {
         text-align: center;
 

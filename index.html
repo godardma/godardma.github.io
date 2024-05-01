@@ -31,8 +31,6 @@
                 <h1 class="header-title">Maël GODARD</h1>
                 <h6 class="header-mono" >PhD student | Marine robotics</h6>
 
-                <button id="myButton" class="btn btn-primary btn-rounded"><i class="ti-printer pr-2" style="font-size: 20px;"></i>Print Resume</button>
-
                 <script type="text/javascript">
                     document.getElementById("myButton").onclick = function () {
                         location.href = "assets/pdf/CV Anglais.pdf";
@@ -57,7 +55,7 @@
                         <a href="#about" class="nav-link">About</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#resume" class="nav-link">Resume</a>
+                        <a href="#contributions" class="nav-link">Contributions</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav brand">
@@ -83,23 +81,24 @@
     </nav>
     <div class="container-fluid">
         <div id="about" class="row about-section">
-            <div class="col-lg-4 about-card">
-                <h3 class="font-weight-light">Who am I ?</h3>
+            <div style="margin-left: 4rem;" class="col-lg-5 about-card">
+                <h1 class="font-weight-light">Who am I ?</h1>
                 <span class="line mb-5"></span>
-                <h5 class="mb-3">A PhD student in marine robotics at ENSTA Bretagne</h5>
-                <p class="mt-20">Working on a priori validation of a robotic mission</p>
+                <h3 class="mb-3">A PhD student in marine robotics at ENSTA Bretagne</h3>
+                <p style="margin-bottom:1.5rem" class="h5">Working on a priori validation of a robotic mission</p>
+
                 <form method="get" action="assets/pdf/CV Anglais.pdf">
                     <button class="btn btn-outline-danger"><i class="icon-down-circled2 "></i>Download My CV</button>
                 </form>
                  
             </div>
-            <div class="col-lg-4 about-card">
-                <h3 class="font-weight-light">Personal Info</h3>
+            <div style="margin-left: 4rem;" class="col-lg-5 about-card">
+                <h1 class="font-weight-light">Personal Info</h1>
                 <span class="line mb-5"></span>
-                <ul class="mt40 info list-unstyled">
-                    <li><span>Birthdate</span> : 14/05/2000</li>
+                <ul class="font-weight-bold list-unstyled">
                     <li><span>Email</span> : mael.godard@ensta-bretagne.org</li>
                     <li><span>Phone</span> : + (33) 6-95-02-56-44</li>
+                    <li><span>Networks</span> :</li>
                 </ul>
                 <ul class="social-icons pt-1">
                     <li class="social-item"><a class="social-link" href="https://ensta-bretagne.hal.science/search/index?q=Maël+GODARD"><i class="ai ai-hal ai-2x" aria-hidden="true"></i></a></li>
@@ -108,158 +107,65 @@
                     <li class="social-item"><a class="social-link" href="https://github.com/godardma"><i class="ti-github" aria-hidden="true"></i></a></li>
                 </ul>  
             </div>
-            <div class="col-lg-4 about-card">
-                <h3 class="font-weight-light">My Expertise</h3>
-                <span class="line mb-5"></span>
-                <div class="row">
-                    <div class="col-1 text-muted pt-1"><i class="ti-widget icon-lg"></i></div>
-                    <div class="col-10 ml-auto mr-3">
-                        <h6>Embedded Electronics</h6>
-                        <p class="subtitle"> Linux, Sensor Integration</p>
-                        <hr>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-1 text-muted pt-1"><i class="ti-package icon-lg"></i></div>
-                    <div class="col-10 ml-auto mr-3">
-                        <h6>Robotic Operating System</h6>
-                        <p class="subtitle">ROS, ROS2</p>
-                        <hr>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-1 text-muted pt-1"><i class="ti-stats-up icon-lg"></i></div>
-                    <div class="col-10 ml-auto mr-3">
-                        <h6>Constraint programming</h6>
-                        <p class="subtitle">Set calculation using Codac</p>
-                        <hr>
-                    </div>
-                </div>
-            </div>
+            
         </div>
     </div>
 
-    <!--Resume Section-->
-    <section class="section" id="resume">
+    <!--Contributions Section-->
+    <section class="section" id="contributions">
         <div class="container">
-            <h2 class="mb-5">My<span class="text-danger"> Resume</span></h2>
+            <h1 class="mb-5">My <span class="text-danger">Contributions</span></h1>
             <div class="row">
-                <div class="col-md-6 col-lg-4">
-                    <div class="card">
-                       <div class="card-header">
-                            <div class="mt-2">
-                                <h4>Expertise</h4>
-                                <span class="line"></span>  
-                            </div>
+                <a href="research.html">
+                    <div class="blog-card" style="width: 70rem;">
+                        <div class="img-holder">
+                            <img src="assets/imgs/research.jpg" >
                         </div>
-                        <div class="card-body">
-                            <h6 class="title text-danger">2023 - Present</h6>
-                            <P>PhD Student</P>
-                            <P class="subtitle">PhD Student in marine robotics at ENSTA Bretagne, working on a priori validation of a robotic mission</P>
-                            <hr>
-                            <h6 class="title text-danger">2023 - 2023</h6>
-                            <P>Engineer intern</P>
-                            <P class="subtitle">Developpement of a submarine robot to evaluate the electrical signature of a ship</P>
-                            <hr>
-                            <h6 class="title text-danger">2022 - 2022</h6>
-                            <P>Assistant-Engineer intern</P>
-                            <P class="subtitle">Optimization/reliability of the process and/or safety conditions integrating technical means and/or innovative solutions to be implemented</P>
+                        <div class="content-holder">
+                            <h1 style="margin-bottom: 2rem;margin-top: 1rem;" class="section-secondary-title">Research</h1>
+                            <p class="h5">Publications and participation to conferences and seminars</p>
                         </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="card">
-                       <div class="card-header">
-                            <div class="mt-2">
-                                <h4>Education</h4>
-                                <span class="line"></span>  
-                            </div>
+                    </div><!-- end of blog wrapper -->
+                </a>
+
+                <a href="libraries.html">
+                    <div class="blog-card" style="width: 70rem;">
+                        <div class="img-holder">
+                            <img src="assets/imgs/elec.jpg" >
                         </div>
-                        <div class="card-body">
-                            <h6 class="title text-danger">2023</h6>
-                            <P>Master of Sciences, Technologies and Health</P>
-                            <P class="subtitle">Delivered by the University of Angers - Specialization in complex systems engineering, Typical course Dynamic systems and signals</P>
-                            <hr>
-                            <h6 class="title text-danger">2020 - 2023</h6>
-                            <P>Engineer degree</P>
-                            <P class="subtitle">Delivered by ENSTA Bretagne - Specialized in autonomous robotics</P>
-                            <hr>
-                            <h6 class="title text-danger">2018-2020</h6>
-                            <P>Preparatory class for great schools</P>
-                            <P class="subtitle">at Lycée Henri Loritz - Physics, Chemistry and Engineer Sciences sector (PCSI)</P>
-                            
+                        <div class="content-holder">
+                            <h1 style="margin-bottom: 2rem;margin-top: 1rem;" class="section-secondary-title">Libraries</h1>
+                            <p class="h5">Useful libraries and drivers for robotics</p>
                         </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="card">
-                       <div class="card-header">
-                            <div class="pull-left">
-                                <h4 class="mt-2">Skills</h4>
-                                <span class="line"></span>  
-                            </div>
+                    </div><!-- end of blog wrapper -->
+                </a>
+                <a href="teaching.html">
+                    <div class="blog-card" style="width: 70rem;">
+                        <div class="img-holder">
+                            <img src="assets/imgs/robot1.jpg" >
                         </div>
-                        <div class="card-body pb-2">
-                           <h6>Python</h6>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 90%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <h6>C++</h6>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 75%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <h6>Arduino</h6>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 70%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <h6>ROS & ROS2</h6>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 80%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <h6>CAD</h6>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 65%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
+                        <div class="content-holder">
+                            <h1 style="margin-bottom: 2rem;margin-top: 1rem;" class="section-secondary-title">Teaching</h1>
+                            <p class="h5">Courses given at ENSTA Bretagne</p>
                         </div>
-                    </div>
-                    <div class="card">
-                       <div class="card-header">
-                            <div class="pull-left">
-                                <h4 class="mt-2">Languages</h4>
-                                <span class="line"></span>  
-                            </div>
-                        </div>
-                        <div class="card-body pb-2">
-                           <h6>French</h6>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <h6>English</h6>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 90%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <h6>German</h6>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 40%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    </div><!-- end of blog wrapper -->
+                </a>
             </div>
-        </div>
-    </section>
+
+        </section>
+    
     
 
     <section class="section" id="blog">
         <div class="container">
-            <h2 class="mb-5">Latest <span class="text-danger">Papers</span></h2>
+            <h1 class="mb-5">Latest <span class="text-danger">Papers</span></h1>
             <div class="row">
-                <div class="blog-card">
+                <div class="blog-card" style="width: 70rem;">
                     <div class="img-holder">
-                        <img src="assets/imgs/blog1.jpg" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page">
+                        <img src="assets/imgs/image1.png">
                     </div>
                     <div class="content-holder">
-                        <h6 class="title">Paper 1 : upcoming</h6>
+                        <h6 class="title">Interval-based Validation of a nonlinear estimator</h6>
                         
                         <p>upcoming</p>
                         <a href="#" class="read-more">Read more <i class="ti-angle-double-right"></i></a>
@@ -267,9 +173,9 @@
                 </div><!-- end of blog wrapper -->
 
                 <!-- blog-card -->
-                <div class="blog-card">
+                <div class="blog-card" style="width: 70rem;">
                     <div class="img-holder">
-                        <img src="assets/imgs/blog2.jpg" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page">
+                        <img src="assets/imgs/blog2.jpg">
                     </div>
                     <div class="content-holder">
                         <h6 class="title">Paper 2 : upcoming</h6>
@@ -279,9 +185,9 @@
                     </div>
                 </div><!-- end of blog wrapper -->
                 <!-- blog-card -->
-                <div class="blog-card">
+                <div class="blog-card" style="width: 70rem;">
                     <div class="img-holder">
-                        <img src="assets/imgs/blog3.jpg" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page">
+                        <img src="assets/imgs/blog3.jpg">
                     </div>
                     <div class="content-holder">
                         <h6 class="title">Paper 3 : upcoming</h6>
@@ -297,7 +203,7 @@
     
         <section class="section" id="conferences">
         <div class="container">
-            <h2 class="mb-5">Conferences & <span class="text-danger">Seminars</span></h2>
+            <h1 class="mb-5">Conferences & <span class="text-danger">Seminars</span></h1>
             <div class="row">
                 <div class="col-md-6 col-lg-6">
                     <div class="card">
@@ -315,6 +221,10 @@
                             <h6 class="title text-danger"><a href="https://www.maastrichtuniversity.nl/swim-2024">SWIM2024 - 14th Edition</a></h6>
                             <P>04/06/2024 to 06/06/2024 - Maastricht</P>
                             <P class="subtitle">TBD</P>
+                            <hr>
+                            <h6 class="title text-danger"><a href="http://rec2024.com/">REC2024</a></h6>
+                            <P>26 and 27/10/2024 - Beijing</P>
+                            <P class="subtitle">Interval-based validation of a nonlinear estimator</P>
                         </div>
                     </div>
                 </div>
@@ -329,7 +239,6 @@
                         <div class="card-body">
                             <h6 class="title text-danger"><a href="https://www.ensta-bretagne.fr/jaulin/robexday3.html">Third ROBEX Days</a></h6>
                             <P>05/12/2023 - Brest</P>
-                            <P class="subtitle">Interval-based validation of a nonlinear estimator</P>
                             <hr>
                             <h6 class="title text-danger"><a href="https://drones-cap-2023.sciencesconf.org/">Journées Drones of the DRONES CAP’ network</a></h6>
                             <P>06/11/2023 to 09/11/2023 - Base Départementale de Plein air de Guerlédan</P>
