@@ -13,6 +13,7 @@
 	<link rel="stylesheet" href="assets/css/johndoe.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" type="text/css" href="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.25.0/maps/maps.css">
 </head>
 
 <body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
@@ -279,10 +280,19 @@
     <!-- Isotope  -->
     <script src="assets/vendors/isotope/isotope.pkgd.js"></script>
     
-    <!-- Google mpas -->
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtme10pzgKSPeJVJrG1O3tjR6lk98o4w8&callback=initMap"></script>
+    <!-- Google maps -->
+    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.25.0/maps/maps-web.min.js"></script>
+    <script async defer>
+      var map = tt.map({
+        key: "cJ9B6KwejrUVqvynH5ase6GnpriKwwEa",
+        container: "map",
+        center: {lng: -4.472434, lat: 48.418820},
+        zoom: 13,
+      })
+      var EnstaBretagne = [-4.472434,  48.418820]
+      var marker = new tt.Marker().setLngLat(EnstaBretagne).addTo(map)
 
-    <!-- JohnDoe js -->
+    </script>
     <script src="assets/js/johndoe.js"></script>
 
 </body>
