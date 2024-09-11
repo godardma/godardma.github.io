@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carte avec Point GPS depuis WebSocket</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <style>
+        #map {
+            height: 800px;
+            width: 100%;
+        }
+        #coords {
+            margin-top: 10px;
+        }
+        /* Style pour le divIcon personnalisé */
+        .custom-marker {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+            border-radius: 50%;
+            border: 2px solid;
+            width: 30px;
+            height: 30px;
+            font-size: 12px;
+            font-weight: bold;
+            color: black;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Afficher un Point GPS depuis WebSocket</h1>
+<div id="map"></div>
+
+<!-- Ajouter des éléments pour afficher les coordonnées -->
+<div id="coords">
+    <p id="latitude">Latitude: </p>
+    <p id="longitude">Longitude: </p>
+</div>
+
+<script>
+    // Initialiser la carte
+    var map = L.map('map').setView([48.199,-3.0152], 19); // Initialiser avec les coordonnées de Mûr-de-Bretagne
+
+    // Ajouter le fond de carte
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 30,
+        attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    var markers = {};
+
+    var colors = [
+        "#FF0000", "#00FF00", "#0000FF", "#FFFF00", "#FF00FF", 
+        "#00FFFF", "#800000", "#008000", "#000080", "#808000", 
+        "#800080", "#008080", "#C0C0C0", "#FFA500", "#A52A2A", 
+        "#5F9EA0", "#D2691E", "#FF1493", "#4B0082", "#2E8B57"
+    ];
+
+    // Connexion au serveur WebSocket
+    var socket = new WebSocket('ws://localhost:8080');
+
+    // Dernière position reçue
+    var lastPosition = { latitude: 48.2014, longitude: -2.9872 };
+
+    // Fonction pour décoder une trame GPGLL
+    function parseGPGLL(data) {
+        const index_at = data.indexOf('@');
+        gpsId = data.slice(index_at+1, index_at+4);
+
+        const index_dollar = data.indexOf('$');
+        const index_semicolon = data.indexOf(';');
+        // Exemple de trame GPGLL : $GPGLL,4811.9201,N,00300.8495,W,103339.000,A
+        // Extraire les coordonnées latitude et longitude
+
+        const parts = data.slice(index_dollar,index_semicolon).split(',');
+        if (parts.length >= 7) {
+            const latStr = parts[1];
+            const lonStr = parts[3];
+            // const gpsId = parts[7].trim();
+            
+            // Convertir les coordonnées GPGLL en degrés décimaux
+            const latitude = parseNMEACoordinate(latStr, parts[2]);
+            const longitude = parseNMEACoordinate(lonStr, parts[4]);
+
+            return { latitude, longitude, gpsId };
+        }
+        return null;
+    }
+
+    // Fonction pour convertir une coordonnée NMEA en degrés décimaux
+    function parseNMEACoordinate(coordStr, direction) {
+        const index = coordStr.indexOf('.');
+        const degrees = parseInt(coordStr.slice(0, index-2), 10);
+        const minutes = parseFloat(coordStr.slice(index-2));
+        let decimal = degrees + (minutes / 60);
+        if (direction === 'S' || direction === 'W') {
+            decimal = -decimal;
+        }
+        return decimal;
+    }
+
+    function throttle(func, delay) {
+        let lastCall = 0;
+        return function(...args) {
+            const now = new Date().getTime();
+            if (now - lastCall >= delay) {
+                lastCall = now;
+                func(...args);
+            }
+        };
+    }
+
+    // Mise à jour du marqueur, de la vue de la carte, et des coordonnées affichées
+    function updateMap(latitude, longitude, gpsId) {
+        const gpsShortId = gpsId.slice(-2);
+
+        const colorIndex = parseInt(gpsShortId, 10) % colors.length;
+        const markerColor = colors[colorIndex];
+
+        const customIcon = L.divIcon({
+            html: `<div class="custom-marker" style="border-color: ${markerColor}; color: ${markerColor};">${gpsShortId}</div>`,
+            className: ''  // Désactiver la classe par défaut de Leaflet pour un styling personnalisé
+        });
+
+        // Vérifier si un marqueur existe déjà pour cet identifiant GPS
+        if (!markers[gpsShortId]) {
+            // Créer un nouveau marqueur pour cet identifiant GPS
+            markers[gpsShortId] = L.marker([latitude, longitude],{ icon: customIcon }).addTo(map).bindPopup(`Bateau ID: ${gpsShortId}`);;
+        } else {
+            // Mettre à jour la position du marqueur existant
+            markers[gpsShortId].setLatLng([latitude, longitude]);
+        }
+
+        // Mettre à jour la vue de la carte pour centrer sur le dernier point
+        // map.setView([48.199,-3.0152], 20);
+
+        // Mettre à jour les éléments HTML pour afficher les coordonnées
+        document.getElementById('latitude').textContent = `Latitude: ${latitude.toFixed(6)}`;
+        document.getElementById('longitude').textContent = `Longitude: ${longitude.toFixed(6)}`;
+        const throttledUpdateMap = throttle(updateMap, 500);
+    }
+
+    // Écouter les messages WebSocket
+    socket.onmessage = function(event) {
+        const data = event.data.trim();
+        const parsedData = parseGPGLL(data);
+        if (parsedData) {
+            const { latitude, longitude, gpsId } = parsedData;
+            updateMap(latitude, longitude, gpsId);
+        }
+    };
+
+    socket.onopen = function() {
+        console.log('Connecté au serveur WebSocket');
+    };
+
+    socket.onclose = function() {
+        console.log('Déconnecté du serveur WebSocket');
+    };
+
+    socket.onerror = function(error) {
+        console.error('Erreur WebSocket :', error);
+    };
+
+    // Mise à jour de la carte toutes les secondes (optionnel)
+    setInterval(() => {
+        if (lastPosition.latitude && lastPosition.longitude) {
+            updateMap(lastPosition.latitude, lastPosition.longitude);
+        }
+    }, 1000);
+</script>
+
+</body>
+</html>
