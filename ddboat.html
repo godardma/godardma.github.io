@@ -33,11 +33,11 @@
 </head>
 <body>
 
-<h1>Afficher un Point GPS depuis WebSocket</h1>
 <div id="map"></div>
 
 <!-- Ajouter des éléments pour afficher les coordonnées -->
 <div id="coords">
+    <p id="ID">ID: </p>
     <p id="latitude">Latitude: </p>
     <p id="longitude">Longitude: </p>
 </div>
@@ -65,12 +65,12 @@
     var socket = new WebSocket('ws://localhost:8080');
 
     // Dernière position reçue
-    var lastPosition = { latitude: 48.2014, longitude: -2.9872 };
+    var lastPosition = { latitude: 48.2014, longitude: -2.9872};
 
     // Fonction pour décoder une trame GPGLL
     function parseGPGLL(data) {
-        const index_at = data.indexOf('@');
-        gpsId = data.slice(index_at+1, index_at+4);
+        const index_at = data.indexOf('3:');
+        gpsId = data.slice(index_at+2, index_at+5);
 
         const index_dollar = data.indexOf('$');
         const index_semicolon = data.indexOf(';');
@@ -130,7 +130,9 @@
         // Vérifier si un marqueur existe déjà pour cet identifiant GPS
         if (!markers[gpsShortId]) {
             // Créer un nouveau marqueur pour cet identifiant GPS
-            markers[gpsShortId] = L.marker([latitude, longitude],{ icon: customIcon }).addTo(map).bindPopup(`Bateau ID: ${gpsShortId}`);;
+            markers[gpsShortId] = L.marker([latitude, longitude],{ icon: customIcon }).addTo(map).bindPopup(`Bateau ID: ${gpsShortId}`, {
+                offset: [10, 0] // Décale le popup vers le haut pour le centrer au-dessus du marqueur
+            });
         } else {
             // Mettre à jour la position du marqueur existant
             markers[gpsShortId].setLatLng([latitude, longitude]);
@@ -140,6 +142,7 @@
         // map.setView([48.199,-3.0152], 20);
 
         // Mettre à jour les éléments HTML pour afficher les coordonnées
+        document.getElementById('ID').textContent = `ID: ${gpsShortId}`;
         document.getElementById('latitude').textContent = `Latitude: ${latitude.toFixed(6)}`;
         document.getElementById('longitude').textContent = `Longitude: ${longitude.toFixed(6)}`;
         const throttledUpdateMap = throttle(updateMap, 500);
@@ -151,7 +154,9 @@
         const parsedData = parseGPGLL(data);
         if (parsedData) {
             const { latitude, longitude, gpsId } = parsedData;
-            updateMap(latitude, longitude, gpsId);
+            if (latitude && longitude) {
+                updateMap(latitude, longitude, gpsId);
+            }
         }
     };
 
