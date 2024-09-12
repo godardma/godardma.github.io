@@ -62,10 +62,10 @@
     ];
 
     // Connexion au serveur WebSocket
-    var socket = new WebSocket('wss://172.20.26.178:8080');
+    var socket = new WebSocket('ws://172.20.26.178:8080');
 
     // Dernière position reçue
-    var lastPosition = { latitude: 48.2014, longitude: -2.9872};
+    var lastPosition = { latitude: 48.2014, longitude: -2.9872, gpsId: '001' };
 
     // Fonction pour décoder une trame GPGLL
     function parseGPGLL(data) {
@@ -174,8 +174,8 @@
 
     // Mise à jour de la carte toutes les secondes (optionnel)
     setInterval(() => {
-        if (lastPosition.latitude && lastPosition.longitude) {
-            updateMap(lastPosition.latitude, lastPosition.longitude);
+        if (lastPosition.latitude && lastPosition.longitude && lastPosition.gpsId) {
+            updateMap(lastPosition.latitude, lastPosition.longitude, lastPosition.gpsId);
         }
     }, 1000);
 </script>
