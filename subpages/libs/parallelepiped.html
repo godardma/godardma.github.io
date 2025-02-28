@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <meta name="description" content="Start your development with JohnDoe landing page.">
+   <meta name="author" content="Devcrud">
+   <title>Libraries - PEIBOS</title>
+   <link rel="icon" href="../../assets/imgs/favicon.png" type="image/png">
+   <!-- font icons -->
+   <link rel="stylesheet" href="../assets/vendors/themify-icons/css/themify-icons.css">
+   <!-- Bootstrap + JohnDoe main styles -->
+  <link rel="stylesheet" href="../../assets/css/johndoe.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<body>
+
+   <!-- Page Header -->
+   <header class="header header-peibos"> 
+      <div class="header-content">
+         <h1 class="header-title">PEIBOS</h1>
+         <h2 class="header-subtitle">Parallelepipedic Enclosure of the Image of the BOundary of a Set</h2>
+     </div>
+   </header> <!-- End Of Page Header -->
+
+   <div class="container">
+      <a href="../libraries.html" class="read-more"> 
+        <button class="btn btn-primary rounded" style="float: left; margin-top: 1rem;"></i> Back </button>
+    </a>
+      <a href="../../index.html" class="read-more"> 
+         <button class="btn btn-primary rounded" style="float: right; margin-top: 1rem;"></i> Return Home</button>
+      </a>
+      </div>
+   <div class="py-2"></div>
+   <hr>
+  
+   <!-- main content -->
+   <div class="container">
+
+      <h1 class="mt-5"><span class="text-danger">Objective</span></h1>
+      <hr>
+      <!-- based on an upcoming paper. -->
+      <h5>
+         PEIBOS is a C++ library that provides a simple and efficient way to compute the Parallelepipedic Enclosure of the Image of the BOundary of a Set.
+         All the source code is available on <a class="font-weight-bold text-warning" href="https://github.com/godardma/PEIBOS">this repository</a>.
+      </h5>
+      <h5>
+         As this library requires both the CAPD and the CODAC (version 2) libraries, the main functions are provided below for any user to adapt them to their own needs.
+      </h5>
+
+      <h5>
+         Considering an initial set \(X_0\), two main use cases are treated by PEIBOS:
+         <ul>
+            <li>Considering a function \(f\), compute the set \( Y = \{f(x) \mid x \in X_0\ \} \).</li>
+            <li>Considering a dynamical equation \( \dot{x} = \gamma(x) \) and a time \( t \), compute the set \( X_t = \{x(t) \mid x(0) \in X_0\} \).</li>
+        </ul>
+      </h5>
+
+      <hr>
+
+      <h1 class="mt-5"><span class="text-danger">Case 1</span></h1>
+
+      <hr>
+
+      <h1 class="mt-5"><span class="text-danger">Case 2</span></h1>
+
+      <h5>
+         Consider the unit sphere as initial set and the dynamical equation of the Lorenz system:
+      </h5>
+      <h5>
+         \[
+         f(x) = \begin{pmatrix}
+         \sigma (x_2 - x_1) \\
+         x_1 (\rho - x_3) - x_2 \\
+         x_1 x_2 - \beta x_3
+         \end{pmatrix}
+         \]
+      </h5>
+
+      <h5>
+         The Atlas used by PEIBOS and the result of the integration after 0.1s are shown below:
+      </h5>
+
+      
+
+
+   </div>
+
+   
+   <!-- core  -->
+   <script src="../../assets/vendors/jquery/jquery-3.4.1.js"></script>
+   <script src="../../assets/vendors/bootstrap/bootstrap.bundle.js"></script>
+   <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
+</body>
+</html>
