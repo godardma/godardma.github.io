@@ -1,5 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<style>
+   .code-container {
+     max-height: 30rem; /* Adjust height to show a limited number of lines */
+     overflow-y: auto; /* Enable vertical scrolling */
+     background: #f4f4f4;
+     padding: 10px;
+     border-radius: 5px;
+     border: 1px solid #ccc;
+     font-family: monospace;
+   }
+ </style>
+
+
+<script>
+   function copyToClipboard() {
+     // Get the code block
+     var code = document.getElementById("codeSnippet");
+ 
+     // Create a temporary textarea to copy the text
+     var tempTextArea = document.createElement("textarea");
+     tempTextArea.value = code.innerText; // Get the code's text content
+     document.body.appendChild(tempTextArea);
+     
+     // Select and copy the text
+     tempTextArea.select();
+     tempTextArea.setSelectionRange(0, 99999); // For mobile devices
+     document.execCommand("copy");
+ 
+     // Remove the temporary textarea
+     document.body.removeChild(tempTextArea);
+ 
+   }
+   
+   function copyToClipboard2() {
+     // Get the code block
+     var code = document.getElementById("codeSnippet2");
+ 
+     // Create a temporary textarea to copy the text
+     var tempTextArea = document.createElement("textarea");
+     tempTextArea.value = code.innerText; // Get the code's text content
+     document.body.appendChild(tempTextArea);
+     
+     // Select and copy the text
+     tempTextArea.select();
+     tempTextArea.setSelectionRange(0, 99999); // For mobile devices
+     document.execCommand("copy");
+ 
+     // Remove the temporary textarea
+     document.body.removeChild(tempTextArea);
+ 
+   }
+
+ </script>
+
 <head>
    <meta charset="utf-8">
    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -73,7 +128,7 @@
          \end{pmatrix}
          \]
       </h5>
-
+      
       <h5>
          The Atlas used by PEIBOS and the result the computation are shown below:
       </h5>
@@ -83,7 +138,9 @@
       <h5>
          The PEIBOS function called in this case is:
       </h5>
-      <pre><code>
+
+      <div id="codeBox" class="code-container">
+      <pre><code id="codeSnippet">
 void PEIBOS(AnalyticFunction<T> f, AnalyticFunction<T>& psi_0, Matrix generators , double epsilon, string output_name)
 {
    // Grpahical output
@@ -128,7 +185,10 @@ void PEIBOS(AnalyticFunction<T> f, AnalyticFunction<T>& psi_0, Matrix generators
    }
 }
       </code></pre>
+      </div>
+      <button  class="btn btn-outline-primary" style="float: right;margin-top: 1rem;" onclick="copyToClipboard()">Copy Code</button>
 
+         
       <hr>
 
       <h1 class="mt-5"><span class="text-danger">Case 2</span></h1>
@@ -147,16 +207,18 @@ void PEIBOS(AnalyticFunction<T> f, AnalyticFunction<T>& psi_0, Matrix generators
       </h5>
 
       <h5>
-         The Atlas used by PEIBOS and the result of the integration after 0.1s are shown below:
+         The Atlas used by PEIBOS and the result of the integration after 0.05s and 0.1s are shown below:
       </h5>
-      <img src="assets/Atlas.gif" alt="Atlas" style="width: 20rem; margin-right: 10rem;">
-      <img src="assets/Lorenz.gif" alt="Lorenz" style="width: 20rem;">
+      <img src="assets/Atlas.gif" alt="Atlas" style="width: 20rem; margin-right: 5rem;">
+      <img src="assets/Lorenz_005.gif" alt="Lorenz_005" style="width: 20rem; margin-right: 5rem;">
+      <img src="assets/Lorenz_01.gif" alt="Lorenz_01" style="width: 20rem;">
 
       <h5>
          The PEIBOS function called in this case is:
       </h5>
 
-      <pre><code>
+      <div id="codeBox" class="code-container">
+      <pre><code id="codeSnippet2">
 void PEIBOS(capd::IMap& gamma, double tf, AnalyticFunction<T>& psi_0, Matrix generators , double epsilon, string output_name)
 {
    // Grpahical output
@@ -233,8 +295,11 @@ void PEIBOS(capd::IMap& gamma, double tf, AnalyticFunction<T>& psi_0, Matrix gen
       }
    }
 }
-      </code></pre>         
+      </code></pre>
+   </div>
+   <button  class="btn btn-outline-primary" style="float: right;margin-top: 1rem;margin-bottom: 2rem;" onclick="copyToClipboard2()">Copy Code</button>
 
+   <hr>
    </div>
 
    
