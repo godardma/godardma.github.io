@@ -173,7 +173,7 @@ void PEIBOS(AnalyticFunction<T> f, AnalyticFunction<T>& psi_0, Matrix generators
             // Maximum error computation
             double rho = error( JJf, JJf_punc, psi_0, symmetry, X);
 
-            IntervalMatrix Jz = (JJf_punc * symmetry*psi_0.diff(X)).mid();
+            IntervalMatrix Jz = (JJf_punc * symmetry*psi_0.diff(xc)).mid();
 
             // Inflation of the parallelepiped
             Matrix A = inflate_flat_parallelepiped(Jz, epsilon, rho);
@@ -288,7 +288,7 @@ void PEIBOS(capd::IMap& gamma, double tf, AnalyticFunction<T>& psi_0, Matrix gen
             // Maximum error computation
             double rho = error( JJf, JJf_punc, psi_0, symmetry, X);
 
-            IntervalMatrix Jz = (JJf_punc * symmetry*psi_0.diff(X)).mid();
+            IntervalMatrix Jz = (JJf_punc * symmetry*psi_0.diff(xc)).mid();
 
             // Inflation of the parallelepiped
             Matrix A = inflate_flat_parallelepiped(Jz, epsilon, rho);
