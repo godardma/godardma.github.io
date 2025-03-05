@@ -141,29 +141,30 @@
 
       <div id="codeBox" class="code-container">
       <pre><code id="codeSnippet">
-void PEIBOS(AnalyticFunction<T> f, AnalyticFunction<T>& psi_0, Matrix generators , double epsilon, string output_name)
+void PEIBOS(AnalyticFunction&lt;T&gt; f, AnalyticFunction&lt;T&gt;& psi_0, vector&lt;initializer_list&lt;int&gt;&gt; generators , double epsilon, string output_name)
 {
    // Grpahical output
    Figure3D output(output_name);
    output.draw_axes();
 
    // Generate the symmetries from the generators
-   vector<Matrix> symmetries = generate_symmetries(generators, psi_0);
-   for (int i = 0; i < symmetries.size(); i++)
+   vector&lt;OctaSym&gt; symmetries = generate_symmetries(generators, psi_0);
+   for (int i = 0; i &lt; symmetries.size(); i++)
    {
-      IntervalMatrix symmetry = symmetries[i];
-      for (double t1 = -1; t1 < 1; t1 += epsilon)
+      OctaSym symmetry = symmetries[i];
+
+      for (double t1 = -1; t1 &lt; 1; t1 += epsilon)
       {
-         for (double t2 = -1;t2 < 1; t2+=epsilon)
+         for (double t2 = -1;t2 &lt; 1; t2+=epsilon)
          {
 
             IntervalVector X({{t1,t1+epsilon},{t2,t2+epsilon}});
-            IntervalVector Y = symmetry*psi_0.eval(X);
+            IntervalVector Y = symmetry(psi_0.eval(X));
 
             IntervalMatrix JJf=f.diff(Y);
 
             auto xc = X.mid();
-            auto yc = (symmetry*psi_0.eval(xc)).mid();
+            auto yc = (symmetry(psi_0.eval(xc))).mid();
 
             IntervalMatrix JJf_punc=f.diff(yc).mid();
 
@@ -173,7 +174,7 @@ void PEIBOS(AnalyticFunction<T> f, AnalyticFunction<T>& psi_0, Matrix generators
             // Maximum error computation
             double rho = error( JJf, JJf_punc, psi_0, symmetry, X);
 
-            IntervalMatrix Jz = (JJf_punc * symmetry*psi_0.diff(xc)).mid();
+            IntervalMatrix Jz = (JJf_punc * IntervalMatrix(symmetry.permutation_matrix()) * psi_0.diff(xc)).mid();
 
             // Inflation of the parallelepiped
             Matrix A = inflate_flat_parallelepiped(Jz, epsilon, rho);
@@ -223,7 +224,7 @@ void PEIBOS(AnalyticFunction<T> f, AnalyticFunction<T>& psi_0, Matrix generators
 
       <div id="codeBox" class="code-container">
       <pre><code id="codeSnippet2">
-void PEIBOS(capd::IMap& gamma, double tf, AnalyticFunction<T>& psi_0, Matrix generators , double epsilon, string output_name)
+void PEIBOS(capd::IMap& gamma, double tf, AnalyticFunction&lt;T&gt;& psi_0, vector&lt;initializer_list&lt;int&gt;&gt; generators , double epsilon, string output_name)
 {
    // Grpahical output
    Figure3D output(output_name);
@@ -242,18 +243,18 @@ void PEIBOS(capd::IMap& gamma, double tf, AnalyticFunction<T>& psi_0, Matrix gen
    capd::interval finalTime(tf);
 
    // Generate the symmetries from the generators
-   vector<Matrix> symmetries = generate_symmetries(generators, psi_0);
-   for (int i = 0; i < symmetries.size(); i++)
+   vector&lt;OctaSym&gt; symmetries = generate_symmetries(generators, psi_0);
+   for (int i = 0; i &lt; symmetries.size(); i++)
    {
-      IntervalMatrix symmetry = symmetries[i];
-      for (double t1 = -1; t1 < 1; t1 += epsilon)
+      OctaSym symmetry = symmetries[i];
+      for (double t1 = -1; t1 &lt; 1; t1 += epsilon)
       {
-         for (double t2 = -1;t2 < 1; t2+=epsilon)
+         for (double t2 = -1;t2 &lt; 1; t2+=epsilon)
          {
 
             // To get the flow function and its Jacobian (monodromy matrix) for [x]
             IntervalVector X({{t1,t1+epsilon},{t2,t2+epsilon}});
-            IntervalVector Y = symmetry*psi_0.eval(X);
+            IntervalVector Y = symmetry(psi_0.eval(X));
 
             capd::IMatrix monodromyMatrix(3,3);
             capd::ITimeMap::SolutionCurve solution(initialTime); 
@@ -268,7 +269,7 @@ void PEIBOS(capd::IMap& gamma, double tf, AnalyticFunction<T>& psi_0, Matrix gen
 
             // To get the flow function and its Jacobian (monodromy matrix) for x_hat
             auto xc = X.mid();
-            auto yc = (symmetry*psi_0.eval(xc)).mid();
+            auto yc = (symmetry(psi_0.eval(xc))).mid();
 
             capd::IMatrix monodromyMatrix_punc(3,3);
             capd::ITimeMap::SolutionCurve solution_punct(initialTime);
@@ -288,7 +289,7 @@ void PEIBOS(capd::IMap& gamma, double tf, AnalyticFunction<T>& psi_0, Matrix gen
             // Maximum error computation
             double rho = error( JJf, JJf_punc, psi_0, symmetry, X);
 
-            IntervalMatrix Jz = (JJf_punc * symmetry*psi_0.diff(xc)).mid();
+            IntervalMatrix Jz = (JJf_punc * IntervalMatrix(symmetry.permutation_matrix()) * psi_0.diff(xc)).mid();
 
             // Inflation of the parallelepiped
             Matrix A = inflate_flat_parallelepiped(Jz, epsilon, rho);
