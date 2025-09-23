@@ -68,6 +68,27 @@
   <link rel="stylesheet" href="../../assets/css/johndoe.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <style>
+   .ruban-haut {
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100%;
+     background-color: #e63946; /* Couleur du ruban */
+     color: white;
+     text-align: center;
+     padding: 10px 0;
+     font-family: Arial, sans-serif;
+     font-size: 16px;
+     z-index: 1000;
+     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+   }
+
+   body {
+     margin: 0;
+     padding-top: 50px; /* Décalage du contenu pour ne pas être caché par le ruban */
+   }
+ </style>
 </head>
 <body>
 
@@ -91,6 +112,10 @@
   
    <!-- main content -->
    <div class="container">
+
+      <div class="ruban-haut">
+         We are currently working on the implementation of PEIBOS directly in the CODAC library. Please stay tuned for updates!
+       </div>
 
       <h1 class="mt-5"><span class="text-danger">Objective</span></h1>
       <hr>
