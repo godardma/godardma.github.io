@@ -11752,3 +11752,84 @@ pre .code {
   display: block;
   margin-top: 10px;
 }
+
+/* Conteneur du carrousel */
+.thesis-carousel {
+    width: 100%;
+    max-width: 900px;
+    margin: 20px auto;
+    overflow: hidden;
+    border-radius: 4px;
+    background-color: #1c1c1c;
+}
+
+/* Images */
+.thesis-carousel .carousel-item img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: contain;
+    background-color: #1c1c1c;
+}
+
+/* Flèches de navigation */
+.thesis-carousel .carousel-control-prev,
+.thesis-carousel .carousel-control-next {
+    width: 7%;
+    opacity: 1;
+    background: transparent;
+    border: none;
+}
+
+/* Couleur des flèches */
+.thesis-carousel .carousel-control-prev-icon,
+.thesis-carousel .carousel-control-next-icon {
+    width: 22px;
+    height: 22px;
+    background-image: none;
+    background-color: transparent;
+    border-top: 3px solid #688ACF;
+    border-right: 3px solid #688ACF;
+}
+
+/* Orientation des flèches */
+.thesis-carousel .carousel-control-prev-icon {
+    transform: rotate(-135deg);
+}
+
+.thesis-carousel .carousel-control-next-icon {
+    transform: rotate(45deg);
+}
+
+/* Indicateurs */
+.thesis-carousel .carousel-indicators {
+    margin-bottom: 8px;
+    gap: 4px;
+}
+
+.thesis-carousel .carousel-indicators button {
+    width: 6px;
+    height: 6px;
+    margin: 0;
+    border: none;
+    border-radius: 50%;
+    background-color: #777;
+    opacity: 1;
+}
+
+.thesis-carousel .carousel-indicators button.active {
+    background-color: #688ACF;
+}
+
+/* Adaptation aux petits écrans */
+@media (max-width: 600px) {
+    .thesis-carousel .carousel-item img {
+        aspect-ratio: 4 / 3;
+    }
+
+    .thesis-carousel .carousel-control-prev,
+    .thesis-carousel .carousel-control-next {
+        width: 12%;
+    }
+}
